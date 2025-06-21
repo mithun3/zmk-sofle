@@ -38,6 +38,15 @@
     behaviors {
     };
 
+    combos {
+        compatible = "zmk,combos";
+
+        delete {
+            bindings = <&lt 0 DELETE>;
+            key-positions = <12>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
