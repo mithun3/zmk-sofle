@@ -155,7 +155,7 @@ layers:
   - KP 4
   - KP 5
   - KP 6
-  - _
+  - +
   - +
   - {t: '$$mdi:transfer$$', type: trans}
   - OUT USB
@@ -168,7 +168,7 @@ layers:
   - KP 1
   - KP 2
   - KP 3
-  - '{'
+  - {t: '-', s: _}
   - '}'
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:backup-restore$$', type: bootloader}
@@ -181,8 +181,8 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:backup-restore$$', type: bootloader}
   - '&soft_off'
-  - $$mdi:progress-download$$
-  - {t: '$$mdi:transfer$$', type: trans}
+  - .
+  - KP ENTER
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
