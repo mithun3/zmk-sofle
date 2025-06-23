@@ -40,19 +40,16 @@
 
     combos { compatible = "zmk,combos"; };
 
-<<<<<<< Updated upstream
         delete {
             bindings = <&lt 0 DELETE>;
             key-positions = <12>;
             layers = <0>;
-=======
     macros {
         back: back {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <>;
             label = "BACK";
->>>>>>> Stashed changes
         };
     };
 
