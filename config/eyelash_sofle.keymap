@@ -44,14 +44,6 @@
 
 &mt { MT_CORE };
 
-#define ZMK_HOLD_TAP(NAME, bindings = <HOLD>, <TAP>; flavor = "balanced";            \
-               tapping-term-ms = <280>; quick-tap-ms = <QUICK_TAP_MS>;         \
-               require-prior-idle-ms = <150>; hold-trigger-on-release;         \
-               hold-trigger-key-positions = <TRIGGER_POS>;)
-
-ZMK_HOLD_TAP(mt_home, bindings = <&masked_home>, <&kp>; MT_CORE)
-ZMK_HOLD_TAP(mt_end, bindings = <&masked_end>, <&kp>; MT_CORE)
-
 #define NAV_LEFT  &mt_home 0   LEFT  // Tap: left  | Long-tap: start of line.
 #define NAV_RIGHT &mt_end 0    RIGHT // Tap: right | Long-tap: end   of line.
 #define NAV_UP    &mt LC(HOME) UP    // Tap: up    | Long-tap: start of doc.
