@@ -27,7 +27,7 @@ layers:
   - O
   - P
   - {t: \, s: '|'}
-  - $$mdi:apple-keyboard-shift$$
+  - '&caps_lock'
   - A
   - S
   - D
@@ -62,10 +62,10 @@ layers:
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:keyboard-space$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - layer1
+  - LAYER01
   - $$mdi:apple-keyboard-shift$$
   - $$mdi:backspace-reverse-outline$$
-  layer1:
+  LAYER01:
   - {t: '`', s: '~'}
   - F1
   - F2
