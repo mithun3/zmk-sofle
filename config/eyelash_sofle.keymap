@@ -82,55 +82,6 @@
         };
     };
 
-    combos {
-        compatible = "zmk,combos";
-
-        esc {
-            bindings = <&kp ESCAPE>;
-            key-positions = <13 14>;
-        };
-
-        left_bkt {
-            bindings = <&kp LEFT_BRACKET>;
-            key-positions = <17 16>;
-        };
-
-        right_bkt {
-            bindings = <&kp RIGHT_BRACKET>;
-            key-positions = <21 22>;
-        };
-
-        left_par {
-            bindings = <&kp LEFT_PARENTHESIS>;
-            key-positions = <29 30>;
-        };
-
-        right_par {
-            bindings = <&kp RIGHT_PARENTHESIS>;
-            key-positions = <34 35>;
-        };
-
-        left_brace {
-            bindings = <&kp LEFT_BRACE>;
-            key-positions = <42 43>;
-        };
-
-        right_brace {
-            bindings = <&kp RIGHT_BRACE>;
-            key-positions = <47 48>;
-        };
-
-        bac {
-            bindings = <&kp BACKSLASH>;
-            key-positions = <18 20>;
-        };
-
-        pipe {
-            bindings = <&kp PIPE>;
-            key-positions = <31 33>;
-        };
-    };
-
 / {
     scroll_encoder: scroll_encoder {
         compatible = "zmk,behavior-sensor-rotate";
