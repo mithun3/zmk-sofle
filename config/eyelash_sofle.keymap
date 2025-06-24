@@ -35,6 +35,13 @@
         tap-ms = <100>;
     };
 
+    caps_lock: caps_lock {
+        compatible = "zmk,behavior-tap-dance";
+        label = "CAPS_LOCK";
+        #binding-cells = <0>;
+        bindings = <&kp LSHFT>, <&caps_word>;
+    };
+
     behaviors {
     };
 
