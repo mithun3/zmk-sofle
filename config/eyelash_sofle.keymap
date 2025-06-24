@@ -14,33 +14,20 @@
 
 &msc_input_listener { input-processors = <&zip_scroll_scaler 2 1>; };
 
-/* Global defaults */
-
-#define QUICK_TAP_MS 175
-
-&sk {
-  release-after-ms = <900>;
-  quick-release;
+&msc {
+    acceleration-exponent = <1>;      // 0
+    time-to-max-speed-ms = <100>;       // 300
+    delay-ms = <0>;                   // 0
 };
 
-&sl { // Allow sticky mods to chord across sticky layers.
-  ignore-modifiers;
+&mmv {
+    time-to-max-speed-ms = <500>;
+    acceleration-exponent = <1>;
+    trigger-period-ms = <16>;
 };
 
-&lt {
-  flavor = "balanced";
-  tapping-term-ms = <200>;
-  quick-tap-ms = <QUICK_TAP_MS>;
-};
 
-/* Nav cluster */
 
-// Trigger tap-action on all interrupts.
-#define MT_CORE                                                                \
-  flavor = "tap-preferred";                                                    \
-  tapping-term-ms = <220>;                                                     \
-  quick-tap-ms = <220>;                                                        \
-  hold-trigger-key-positions = <0>;
 
 / {
     scroll_encoder: scroll_encoder {
