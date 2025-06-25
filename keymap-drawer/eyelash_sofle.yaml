@@ -214,7 +214,7 @@ layers:
   - <
   - '>'
   - '"'
-  - .
+  - {t: '''', s: '"'}
   - {t: '$$mdi:menu-down$$', s: '$$mdi:mouse$$'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
