@@ -17,12 +17,12 @@
 include:
   - keyboard: eyelash_sofle
     board: eyelash_sofle_right
-    shield: nice_view_custom
+    shield: nice_view_gem
     artifact-name: eyelash_sofle_studio_right
+    snippet: studio-rpc-usb-uart
   - keyboard: eyelash_sofle
     board: eyelash_sofle_left
     shield: nice_view
-    snippet: studio-rpc-usb-uart
     cmake-args: -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_STUDIO_LOCKING=n
     artifact-name: eyelash_sofle_studio_left
   - keyboard: eyelash_sofle
