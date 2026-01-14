@@ -85,11 +85,11 @@
 
         layer2 {
             bindings = <
-&kp ESC  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &mmv MOVE_UP     &kp F6  &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp F10     &trans
-&trans   &bt BT_CLR    &bt BT_CLR_ALL  &trans        &trans        &trans          &mmv MOVE_DOWN   &trans  &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp PLUS    &kp PLUS
-&trans   &out OUT_USB  &out OUT_BLE    &trans        &trans        &trans          &mmv MOVE_LEFT   &trans  &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp MINUS   &kp RBRC
-&trans   &sys_reset    &trans          &bootloader   &trans        &trans          &mmv MOVE_RIGHT  &trans  &trans           &sys_reset       &soft_off        &kp PERIOD  &kp KP_ENTER
-&trans   &trans        &trans          &trans        &trans        &trans          &mkp LCLK        &trans  &trans           &trans           &trans           &trans
+&kp ESC  &trans        &trans          &trans            &trans             &trans          &mmv MOVE_UP     &kp F6  &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp F10     &trans
+&trans   &kp GRAVE     &kp LESS_THAN   &kp GREATER_THAN  &kp DOUBLE_QUOTES  &kp SQT         &mmv MOVE_DOWN   &trans  &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp PLUS    &kp PLUS
+&trans   &kp EXCLAMATION &kp MINUS     &kp PLUS          &kp EQUAL          &kp HASH        &mmv MOVE_LEFT   &trans  &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp MINUS   &kp RBRC
+&trans   &kp CARET     &kp SLASH       &kp BACKSLASH     &kp ASTERISK       &trans          &mmv MOVE_RIGHT  &trans  &trans           &sys_reset       &soft_off        &kp PERIOD  &kp KP_ENTER
+&trans   &trans        &trans          &trans            &trans             &trans          &mkp LCLK        &trans  &trans           &trans           &trans           &trans
             >;
 
             sensor-bindings = <&scroll_encoder>;
@@ -98,11 +98,11 @@
 
         layer3 {
             bindings = <
-&kp ESC  &trans           &trans         &trans            &trans             &trans      &mmv MOVE_UP     &trans  &trans  &trans                &trans                 &trans        &trans
-&trans   &kp GRAVE        &kp LESS_THAN  &kp GREATER_THAN  &kp DOUBLE_QUOTES  &kp SQT     &mmv MOVE_DOWN   &trans  &trans  &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp PERCENT   &kp PLUS
-&trans   &kp EXCLAMATION  &kp MINUS      &kp PLUS          &kp EQUAL          &kp HASH    &mmv MOVE_LEFT   &trans  &trans  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp QUESTION  &kp RBRC
-&trans   &kp CARET        &kp SLASH      &kp BACKSLASH     &kp ASTERISK       &trans      &mmv MOVE_RIGHT  &trans  &trans  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp AT_SIGN   &trans
-&trans   &trans           &trans         &trans            &trans             &trans      &mkp LCLK        &trans  &trans  &trans                &trans                 &trans
+&kp ESC  &bt BT_SEL 0     &bt BT_SEL 1   &bt BT_SEL 2      &bt BT_SEL 3       &bt BT_SEL 4  &mmv MOVE_UP     &trans  &trans  &trans                &trans                 &trans        &trans
+&trans   &bt BT_CLR       &bt BT_CLR_ALL &trans            &trans             &trans        &mmv MOVE_DOWN   &trans  &trans  &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp PERCENT   &kp PLUS
+&trans   &out OUT_USB     &out OUT_BLE   &trans            &trans             &trans        &mmv MOVE_LEFT   &trans  &trans  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp QUESTION  &kp RBRC
+&trans   &sys_reset       &trans         &bootloader       &trans             &trans        &mmv MOVE_RIGHT  &trans  &trans  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp AT_SIGN   &trans
+&trans   &trans           &trans         &trans            &trans             &trans        &mkp LCLK        &trans  &trans  &trans                &trans                 &trans
             >;
 
             sensor-bindings = <&scroll_encoder>;
