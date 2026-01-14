@@ -45,6 +45,15 @@
     behaviors {
     };
 
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+
+        tri_layer {
+            if-layers = <1 2>;
+            then-layer = <3>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -54,11 +63,11 @@
 &kp TAB           &kp Q   &kp W         &kp E         &kp R   &kp T        &trans           &kp Y      &kp U      &kp I      &kp O            &kp P       &kp BSLH
 &caps_lock        &kp A   &kp S         &kp D         &kp F   &kp G        &trans           &kp H      &kp J      &kp K      &kp L            &kp SEMI    &kp APOS
 &kp LEFT_CONTROL  &kp Z   &kp X         &kp C         &kp V   &kp B        &trans           &kp N      &kp M      &kp COMMA  &kp DOT          &kp FSLH    &kp ENTER
-&kp C_MUTE        &mo 3   &kp LEFT_GUI  &kp LEFT_ALT  &mo 2   &kp SPACE    &kp ENTER        &kp SPACE  &kp ENTER  &mo 1      &kp RIGHT_SHIFT  &kp DELETE
+&kp C_MUTE        &mo 1   &kp LEFT_GUI  &kp LEFT_ALT  &mo 2   &kp SPACE    &kp ENTER        &kp SPACE  &kp ENTER  &kp RIGHT_GUI  &kp RIGHT_SHIFT  &kp DELETE
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;
-            display-name = "LAYER0";
+            display-name = "BASE";
         };
 
         layer1 {
@@ -70,7 +79,7 @@
 &kp C_MUTE  &trans           &trans          &trans           &trans           &trans             &mkp LCLK        &trans           &trans           &trans      &trans     &trans
             >;
 
-            display-name = "LAYER1";
+            display-name = "LOWER";
             sensor-bindings = <&scroll_encoder>;
         };
 
@@ -84,6 +93,7 @@
             >;
 
             sensor-bindings = <&scroll_encoder>;
+            display-name = "RAISE";
         };
 
         layer3 {
@@ -96,6 +106,7 @@
             >;
 
             sensor-bindings = <&scroll_encoder>;
+            display-name = "ADJUST";
         };
     };
 };
