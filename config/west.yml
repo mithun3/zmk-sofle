@@ -25,19 +25,13 @@ manifest:
       # - https://docs.zephyrproject.org/3.5.0/develop/west/manifest.html#projects
     - name: gpeye
       url-base: https://github.com/GPeye
-    - name: inputproc
-      url-base: https://github.com/nicell   
   projects:
     - name: mario-peripheral-animation
       remote: gpeye
       revision: main 
     - name: zmk
       remote: zmkfirmware
-      revision: v0.1.0
+      revision: v0.3
       import: app/west.yml
-    - name: zmk-input-processing
-      remote: inputproc
-      revision: main
-      path: modules/zmk-input-processing
   self:
     path: boards
