@@ -101,7 +101,7 @@
 &kp ESC  &bt BT_SEL 0     &bt BT_SEL 1   &bt BT_SEL 2      &bt BT_SEL 3       &bt BT_SEL 4      &mmv MOVE_UP        &trans  &trans  &trans                &trans                 &trans        &trans
 &trans   &bt BT_CLR       &bt BT_CLR_ALL &rgb_ug RGB_OFF   &rgb_ug RGB_ON     &rgb_ug RGB_EFF   &mmv MOVE_DOWN      &trans  &trans  &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp PERCENT   &kp PLUS
 &trans   &out OUT_USB     &out OUT_BLE   &rgb_ug RGB_EFR   &rgb_ug RGB_SPI    &rgb_ug RGB_BRI   &mmv MOVE_LEFT      &trans  &trans  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp QUESTION  &kp RBRC
-&trans   &sys_reset       &trans         &bootloader       &soft_off          &rgb_ug RGB_BRD   &mmv MOVE_RIGHT     &trans  &trans  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp AT_SIGN   &trans
+&trans   &sys_reset       &trans         &bootloader       &soft_off          &rgb_ug RGB_BRD   &mmv MOVE_RIGHT     &trans  &trans  &trans                &trans                 &trans        &trans
 &trans   &trans           &trans         &trans            &trans             &trans            &mkp LCLK           &trans  &trans  &trans                &trans                 &trans
             >;
 
