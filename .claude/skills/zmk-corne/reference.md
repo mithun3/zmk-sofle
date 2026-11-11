@@ -5,14 +5,14 @@ Facts read from files in this repository unless marked TBD. The config was merge
 ## Files
 
 - [build.yaml](../../../build.yaml): board `nice_nano_v2`. Targets:
-  - `corne_left`: `corne_left nice_view_adapter nice_view`, snippet `studio-rpc-usb-uart`, cmake args `-DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_STUDIO_LOCKING=n`.
-  - `corne_right`: `corne_right nice_view_adapter nice_view`.
+  - `corne_left`: `corne_left nice_view_adapter nice_view_gem`, snippet `studio-rpc-usb-uart`, cmake args `-DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_STUDIO_LOCKING=n`.
+  - `corne_right`: `corne_right nice_view_adapter nice_view_gem`.
   - `corne_settings_reset`: `settings_reset`.
 - [config/west.yml](../../../config/west.yml): shared with the Sofle. `zmk` at `revision: v0.3`.
 - [config/corne.conf](../../../config/corne.conf):
   - `CONFIG_BT_CTLR_TX_PWR_PLUS_8=y`
   - `CONFIG_BT_GATT_ENFORCE_SUBSCRIPTION=n`
-  - `CONFIG_ZMK_DISPLAY=y`
+  - `CONFIG_ZMK_DISPLAY=y`, `CONFIG_ZMK_DISPLAY_STATUS_SCREEN_CUSTOM=y`, `CONFIG_NICE_VIEW_GEM_ANIMATION=n`
   - `CONFIG_ZMK_KSCAN_DEBOUNCE_PRESS_MS=1` and `CONFIG_ZMK_KSCAN_DEBOUNCE_RELEASE_MS=20`
 - [config/corne.keymap](../../../config/corne.keymap): three layers.
 
@@ -37,4 +37,5 @@ Re-count after any edit.
 
 - No combos or hold-taps are defined. Behaviour is plain `&kp`, `&mo`, `&bt`, and `&trans`.
 - There is no underglow on this board.
+- The gem screen has not yet been built or hardware-tested on the Corne (TBD, owner).
 - Before the merge the Corne tracked ZMK `main`. After moving to `v0.3`, flash `corne_settings_reset` to both halves once, then the firmware, then pair again (owner-run).

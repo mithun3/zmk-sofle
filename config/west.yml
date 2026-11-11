@@ -4,20 +4,14 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: m165437
       url-base: https://github.com/M165437
-    - name: gpeye
-      url-base: https://github.com/GPeye
   projects:
     - name: zmk
       remote: zmkfirmware
       revision: v0.3
       import: app/west.yml
-    # Sofle display. Its main branch targets ZMK main, so pin the v0.3 tag.
+    # Display screen for both keyboards. Its main branch targets ZMK main, so pin the v0.3 tag.
     - name: nice-view-gem
       remote: m165437
       revision: v0.3.0
-    # Mario animation (shield nice_view_custom). No release tags, so pin the commit.
-    - name: mario-peripheral-animation
-      remote: gpeye
-      revision: 1aa3950d6c86b4240b3f79d06bdbb04c5d920711
   self:
     path: config

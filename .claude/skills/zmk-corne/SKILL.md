@@ -1,6 +1,6 @@
 ---
 name: zmk-corne
-description: "Corne (crkbd-style 42-key split) in this repo: nice_nano_v2 halves, stock corne_left and corne_right shields, nice_view, Studio on the left half, three layers BASE/LOWER/RAISE, and the key-count question. Use for questions about the Corne keymap, its config, or its build. Verified against files in this repo and ZMK 0.3.0."
+description: "Corne (crkbd-style 42-key split) in this repo: nice_nano_v2 halves, stock corne_left and corne_right shields, nice_view_gem display, Studio on the left half, three layers BASE/LOWER/RAISE, and the key-count question. Use for questions about the Corne keymap, its config, or its build. Verified against files in this repo and ZMK 0.3.0."
 metadata:
   zmk_version: "0.3.0"
   verified: "2026-11-11"
@@ -14,10 +14,10 @@ This skill covers the Corne in this repository. For general ZMK behaviour, load 
 ## Quick facts
 
 - Board: `nice_nano_v2` for both halves. The `corne` shield is stock ZMK, so this repo has no board files for it.
-- Build targets in `build.yaml`: `corne_left` (`corne_left nice_view_adapter nice_view`, Studio snippet), `corne_right`, and `corne_settings_reset`.
+- Build targets in `build.yaml`: `corne_left` (`corne_left nice_view_adapter nice_view_gem`, Studio snippet), `corne_right`, and `corne_settings_reset`.
 - Keymap: `config/corne.keymap` with three layers: `base_layer` (BASE), `lower_layer` (LOWER, `&mo 1`), `raise_layer` (RAISE, `&mo 2`).
 - Each layer has 42 bindings: three rows of 12 and a thumb row of 6. That matches the 42-key Corne spec (3×6 plus 3 thumbs per side).
-- Config: `config/corne.conf` sets BT TX power, the display, and debounce. Studio is set per target in `build.yaml`.
+- Config: `config/corne.conf` sets BT TX power, the display (nice-view-gem, animation off), and debounce. Studio is set per target in `build.yaml`.
 
 ## Working rules
 

@@ -12,7 +12,6 @@ ZMK firmware config for two split keyboards. Both build from this repo on ZMK `v
 | Keymap | `config/eyelash_sofle.keymap` | `config/corne.keymap` |
 | Settings | `config/eyelash_sofle.conf` | `config/corne.conf` |
 | Layers | BASE, LOWER, RAISE, ADJUST (LOWER + RAISE) | BASE, LOWER, RAISE |
-| Display | nice-view-gem | nice!view |
 | Extras | Encoder, mouse keys, RGB underglow, backlight | none |
 
 ZMK picks each keyboard's `.keymap` and `.conf` by name, so the two never mix.
@@ -60,15 +59,12 @@ The left half of each keyboard is built with [ZMK Studio](https://zmk.studio) su
 
 ## Display screens
 
-The screen design is chosen per half by one word on the `shield:` line in `build.yaml`. It is fixed when the firmware is built and cannot be changed from the keyboard.
+All four halves use the [nice-view-gem](https://github.com/M165437/nice-view-gem) screen with its animation turned off.
 
-| Shield word | Screen | Source |
-| :- | :- | :- |
-| `nice_view` | Stock ZMK nice!view screen | ZMK |
-| `nice_view_gem` | Gem status screen, crystal animation on the right half | nice-view-gem module |
-| `nice_view_custom` | Mario animation, meant for the right half | mario-peripheral-animation module |
+- Left half: layer, Bluetooth profile, USB or BLE output, battery, typing speed.
+- Right half: battery, link to the left half, and a still image that changes on each restart.
 
-On the Corne, keep `nice_view_adapter` in front of the word. Both modules are listed in `config/west.yml` and downloaded by the build.
+The screen is chosen by the last word on each `shield:` line in `build.yaml` and is fixed when the firmware is built. `nice_view` gives the stock ZMK screen instead.
 
 ## Local builds
 

@@ -55,6 +55,7 @@ From [config/eyelash_sofle.conf](../../../config/eyelash_sofle.conf):
 | `CONFIG_ZMK_BACKLIGHT` | y | Backlight on, start at 100, idle auto-off off |
 | `CONFIG_ZMK_KSCAN_DEBOUNCE_PRESS_MS` and `_RELEASE_MS` | 8 and 8 | Debounce |
 | `CONFIG_ZMK_DISPLAY` and `CONFIG_ZMK_DISPLAY_STATUS_SCREEN_CUSTOM` | y | Display with the nice-view-gem status screen |
+| `CONFIG_NICE_VIEW_GEM_ANIMATION` | n | Right half shows a still frame, no animation |
 
 Studio is not in this file. It is set per target in `build.yaml`.
 
@@ -76,10 +77,9 @@ Both halves have a display. The `nice_view_spi` bus is defined in the shared [ey
 
 From [config/west.yml](../../../config/west.yml):
 
-- Remotes: `zmkfirmware`, `m165437` (`https://github.com/M165437`), and `gpeye` (`https://github.com/GPeye`).
+- Remotes: `zmkfirmware` and `m165437` (`https://github.com/M165437`).
 - ZMK: `revision: v0.3`, import `app/west.yml`. Matches the local tree VERSION 0.3.0.
-- nice-view-gem: `revision: v0.3.0`. Its `main` branch targets ZMK main.
-- mario-peripheral-animation: pinned to commit `1aa3950`. It provides the shield `nice_view_custom`. No target in `build.yaml` uses it yet, and it has not been built against ZMK v0.3 here (TBD).
+- nice-view-gem: `revision: v0.3.0`. Its `main` branch targets ZMK main. Both keyboards use it.
 - `self.path: config`.
 - The manifest is shared with the Corne.
 
