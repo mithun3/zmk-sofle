@@ -1,0 +1,28 @@
+{
+  "agent_name": "zmk-change-reviewer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review my edits to config/eyelash_sofle.keymap and build.yaml.",
+      "expected_output": "Returns a verdict with findings ranked by severity. Counts the bindings in every changed layer (64 per Sofle layer). Checks that build.yaml still has three targets per keyboard, with the Studio snippet and CONFIG_ZMK_STUDIO only on the left halves, and notes that build.yaml is shared with the Corne. Cites file and line. Makes no edits. Lists checks not run as TBD.",
+      "files": [
+        "config/eyelash_sofle.keymap",
+        "build.yaml"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Check the binding counts in the Corne keymap against its key count.",
+      "expected_output": "Reports 42 bindings for base_layer, lower_layer, and raise_layer, each with rows 12, 12, 12, and 6. Compares the count to the 42-key Corne spec. Notes that the AliExpress listing's '61 keys' conflicts with the spec and asks the owner to confirm the physical kit. Makes no edits.",
+      "files": [
+        "config/corne.keymap"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Review this Rust function that parses HTTP headers.",
+      "expected_output": "Declines as outside the ZMK configuration scope. Does not read or change any file for this request.",
+      "files": []
+    }
+  ]
+}

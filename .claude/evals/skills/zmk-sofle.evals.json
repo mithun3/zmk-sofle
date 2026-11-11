@@ -1,0 +1,17 @@
+{
+  "skill_name": "zmk-sofle",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "How many matrix positions does the Sofle have, and which indices are the innermost right column?",
+      "expected_output": "States 64 positions (14 columns by 5 rows with col-offset 7, 13 keys in rows 0 to 3 and 12 in row 4). Gives indices 6, 19, 32, and 45. Notes that these are &trans on BASE and mouse-move bindings on LOWER, RAISE, and ADJUST. Cites boards/arm/eyelash_sofle/eyelash_sofle.dtsi and config/eyelash_sofle.keymap.",
+      "files": ["boards/arm/eyelash_sofle/eyelash_sofle.dtsi", "config/eyelash_sofle.keymap"]
+    },
+    {
+      "id": 2,
+      "prompt": "Set up a Raspberry Pi web server with nginx.",
+      "expected_output": "Does not apply the Sofle skill. Declines or says this is outside the keyboard scope.",
+      "files": []
+    }
+  ]
+}

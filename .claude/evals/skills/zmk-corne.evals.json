@@ -1,0 +1,19 @@
+{
+  "skill_name": "zmk-corne",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "How many keys does the Corne keymap define per layer, and how does that compare with the key count on the listing?",
+      "expected_output": "States 42 bindings per layer (rows 12, 12, 12, and 6). Notes the 42-key Corne spec. Says the AliExpress '61 keys' listing conflicts and that the physical kit must be confirmed. Cites config/corne.keymap.",
+      "files": [
+        "config/corne.keymap"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Recommend a mechanical switch for a gaming keyboard.",
+      "expected_output": "Does not apply the Corne skill. Declines or says this is outside the keyboard firmware scope.",
+      "files": []
+    }
+  ]
+}

@@ -1,82 +1,67 @@
-# zmk-sofle (eyelash_sofle)
+# zmk-config
 
-Firmware configs for the eyelash Sofle split keyboard running ZMK. Includes custom board definitions, pointing device tuning, per-side builds, underglow/backlight, and a navigation-first layer stack.
+ZMK firmware config for two split keyboards. Both build from this repo on ZMK `v0.3`.
 
-## Hardware assumptions
-- Sofle-derived split with eyelash_sofle left/right PCBs (see boards/arm/eyelash_sofle/*).
-- Nice!Nano-class MCU (nRF52840) per half.
-- EC11 rotary encoder(s) and optional sensor input for scrolling.
-- WS2812 underglow, backlight support, optional external power.
-- Nice-view-gem OLED display (custom status screen enabled).
+## Keyboards
+
+| | Eyelash Sofle | Corne |
+| :- | :- | :- |
+| Name used everywhere | `eyelash_sofle` | `corne` |
+| Hardware | Custom nRF52840 board (files in `boards/`) | `nice_nano_v2` with the stock ZMK `corne` shield |
+| Keys | 64 | 42 |
+| Keymap | `config/eyelash_sofle.keymap` | `config/corne.keymap` |
+| Settings | `config/eyelash_sofle.conf` | `config/corne.conf` |
+| Layers | BASE, LOWER, RAISE, ADJUST (LOWER + RAISE) | BASE, LOWER, RAISE |
+| Display | nice-view-gem | nice!view |
+| Extras | Encoder, mouse keys, RGB underglow, backlight | none |
+
+ZMK picks each keyboard's `.keymap` and `.conf` by name, so the two never mix.
 
 ## Repo layout
-- boards/arm/eyelash_sofle/: board files (CMake, DTS, keymap for board builds).
-- config/: primary ZMK config (eyelash_sofle.conf, keymap, combos.dtsi, west.yml).
-- keymap-drawer/: YAML layouts for generating diagrams.
-- build.yaml: CI/build helper matrix.
 
-## Keymap overview (config/eyelash_sofle.keymap)
-- Pointing: accelerated cursor and scroll (`mmv`, `msc`) with adjustable time-to-max.
-- Layer stack (tri-layer: Lower + Raise => Adjust):
-  - layer0 (Base): alphas, number row, thumbs = Lower (layer1) / Raise (layer2) with tri-layer Adjust (layer3) when both held; arrows removed to keep base clean.
-  - layer1 (Lower: Nav/F-keys/RGB): F-keys, PgUp/PgDn/Home/End + arrows, RGB controls, mouse buttons, scroll encoder.
-  - layer2 (Raise: BT/Utility/Numpad): BT select/clear, USB/BLE output toggle, numpad; feeding Adjust when combined with Lower.
-  - layer3 (Adjust): symbols cluster; use this layer for infrequent/destructive actions (reset/bootloader/soft-off, currently on layer2—move here if desired).
-- Tap dance: `caps_lock` toggles Shift/Caps Word (175 ms tapping-term).
-- Sensor bindings: scroll encoder present on layers 1–3; volume inc/dec on base.
-- Tri-layer support: `CONFIG_ZMK_CONDITIONAL_LAYERS=y` is set in config/eyelash_sofle.conf to enable the Lower+Raise=>Adjust logic.
-
-## Combos (config/combos.dtsi)
-- Fast combos: 18 ms term, 150 ms idle for tight chords (Escape, mouse, tab, leader, cut/copy/paste, bspc/del, brackets/paren pairs).
-- Slow combos: 30 ms term, 50 ms idle for vertical symbol pairs (currency, math, slashes, pipes).
-- If using home-row mods, consider relaxing the fast term to ~25–30 ms to avoid accidental fires.
-- Ensure combos.dtsi is included in your build (e.g., via your shield or main .keymap include).
-
-## Timing and input feel
-- Debounce: 8 ms press/release (CONFIG_ZMK_KSCAN_DEBOUNCE_* in config/eyelash_sofle.conf). Lower to 4–5 ms if your switches/diodes are clean and you want snappier input.
-- Tap dance: 175 ms on Caps/Shift toggle.
-- Pointing defaults: cursor move 1200, scroll 25; cursor accel time-to-max 500 ms, scroll 100 ms; adjust to taste.
-- Idle sleep: 60 minutes; NKRO disabled for compatibility; backlight starts on, underglow off by default with max brightness capped at 90.
-
-## Build and flash
-Prereqs: Zephyr SDK, west, ZMK source as a module. From repo root:
-
-1) Initialize (once):
 ```
-west init -l config
-west update
+build.yaml                 what CI builds: left, right, settings reset per keyboard
+config/
+  west.yml                 ZMK version and modules, shared by both keyboards
+  eyelash_sofle.keymap     Sofle keys
+  eyelash_sofle.conf       Sofle settings
+  eyelash_sofle.json       Sofle physical layout for the drawing
+  corne.keymap             Corne keys
+  corne.conf               Corne settings
+boards/arm/eyelash_sofle/  Sofle board definition (the Corne needs none)
+keymap-drawer/             generated drawings, one per keyboard
+keymap_drawer.config.yaml  drawing style
 ```
 
-2) Build left half:
-```
-west build -s zmk/app -b eyelash_sofle_left -d build/left -- -DZMK_CONFIG=${PWD}/config
-```
+## Changing a keymap
 
-3) Build right half:
-```
-west build -s zmk/app -b eyelash_sofle_right -d build/right -- -DZMK_CONFIG=${PWD}/config
-```
+1. Edit `config/<keyboard>.keymap`. Keep 64 bindings per Sofle layer and 42 per Corne layer.
+2. Push. GitHub Actions builds the firmware and redraws `keymap-drawer/<keyboard>.svg`.
+3. Download the `firmware` artifact from the Actions run and flash it.
 
-4) Flash UF2: copy build/<side>/zephyr/zmk.uf2 to the respective half’s storage (bootloader mode). Use `west flash` if your bootloader supports it.
+## Firmware files
 
-Notes:
-- Adjust `-DZMK_CONFIG` if your config dir moves.
-- If you prefer shield-style builds, adapt the `-DSHIELD=` flags to your setup.
+| Keyboard | Left (central, ZMK Studio) | Right | Settings reset |
+| :- | :- | :- | :- |
+| Sofle | `eyelash_sofle_left.uf2` | `eyelash_sofle_right.uf2` | `eyelash_sofle_settings_reset.uf2` |
+| Corne | `corne_left.uf2` | `corne_right.uf2` | `corne_settings_reset.uf2` |
 
-## Keymap diagrams (optional)
-- Edit the YAML in keymap-drawer/ (e.g., eyelash_sofle.yaml).
-- Regenerate markdown/PNG using keymap-drawer CLI, pointing at your YAML.
+## Flashing
 
-## Recommended customizations
-- Home-row mods: add `&mt`/`&hm` on alphas; keep timing consistent with combos.
-- Safety: move `sys_reset`, `bootloader`, `soft_off` fully into Adjust-only chords (tri-layer is already present).
-- Navigation: keep nav canonical on layer1; base stays transparent for HRMs or layer-taps.
+1. Put one half into its bootloader (double-tap reset). A USB drive appears.
+2. Copy that half's `.uf2` file to the drive. The half reboots when the copy finishes.
+3. Repeat for the other half.
 
-## Troubleshooting
-- Ghost taps: raise debounce or tap-hold timings; check switch/diode soldering.
-- Missed combos: lengthen fast combo term to 25–30 ms; ensure combos.dtsi is included.
-- Sluggish pointer: lower cursor time-to-max to ~250–300 ms; increase scroll accel if needed.
-- Power draw: use underglow auto-off (USB/idle already enabled) and external power if driving many LEDs.
+A keymap-only change usually needs just the left half. If the halves stop pairing, flash the settings reset file to both halves, then the normal firmware, then pair again.
+
+## ZMK Studio
+
+The left half of each keyboard is built with [ZMK Studio](https://zmk.studio) support over USB, unlocked. Changes saved from Studio override the keymap file until you choose "Restore stock settings" in Studio.
+
+## Local builds
+
+See the [ZMK local build docs](https://zmk.dev/docs/development/local-toolchain/build-flash). Pass `-DZMK_CONFIG=<this repo>/config` and `-DZMK_EXTRA_MODULES=<this repo>`.
 
 ## License
-MIT, following upstream ZMK community conventions.
+
+MIT, following upstream ZMK conventions.

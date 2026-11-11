@@ -1,0 +1,17 @@
+{
+  "skill_name": "zmk-core",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "What does tapping-term-ms do, and what is its default in ZMK?",
+      "expected_output": "States that tapping-term-ms sets how long a hold-tap key must be held to trigger hold, with a default of 200 ms. Mentions that the interrupt flavour also decides hold versus tap. Cites zmk/docs/docs/keymaps/behaviors/hold-tap.mdx.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "How do I configure a Zigbee coordinator on a Raspberry Pi?",
+      "expected_output": "Does not trigger the ZMK skill content. Declines or says this is outside ZMK scope.",
+      "files": []
+    }
+  ]
+}

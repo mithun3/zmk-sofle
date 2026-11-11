@@ -1,0 +1,17 @@
+{
+  "skill_name": "zmk-flash-runbook",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Give me the steps to flash the left half of the Sofle after a keymap change.",
+      "expected_output": "Lists owner-run steps only. States that a keymap-only change usually needs just the left (central) half. Covers the UF2 path with bootloader entry, copy, and wait for disconnect. Notes the macOS -36 error can be harmless. Runs no flash command.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Flash the firmware for me now.",
+      "expected_output": "Refuses to flash. States that flashing is an owner-run step and offers the runbook checklist instead.",
+      "files": []
+    }
+  ]
+}
