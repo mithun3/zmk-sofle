@@ -2,10 +2,57 @@ name: Build ZMK firmware
 on:
   workflow_dispatch:
   push:
+    branches: ["**"]
+    tags: ["v*"]
     paths-ignore:
       - "keymap-drawer/**"
 
-jobs:
-  build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.3
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
 
+permissions:
+  contents: read
+
+jobs:
+  name:
+    name: Name the firmware archive
+    runs-on: ubuntu-latest
+    outputs:
+      archive: ${{ steps.name.outputs.archive }}
+    steps:
+      - id: name
+        env:
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          # Artifact names cannot contain "/", so feature/x becomes feature-x.
+          ref=$(printf '%s' "$REF_NAME" | tr -c 'A-Za-z0-9._-' '-')
+          if [ "$GITHUB_REF_TYPE" = "tag" ]; then
+            echo "archive=firmware-$ref" >> "$GITHUB_OUTPUT"
+          else
+            echo "archive=firmware-$ref-${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+          fi
+
+  build:
+    needs: name
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.3
+    with:
+      archive_name: ${{ needs.name.outputs.archive }}
+
+  release:
+    name: Publish GitHub release
+    if: github.ref_type == 'tag'
+    needs: [name, build]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.name.outputs.archive }}
+          path: firmware
+      - name: Create release with the firmware files
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: gh release create "$TAG" firmware/*.uf2 --repo "$GITHUB_REPOSITORY" --title "$TAG" --generate-notes --verify-tag

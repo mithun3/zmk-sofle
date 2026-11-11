@@ -18,6 +18,7 @@ Source: [build-flash.mdx](../../../zmk/docs/docs/development/local-toolchain/bui
 
 - `build.yaml` lists the targets. Each entry can set `board`, `shield`, `snippet`, `cmake-args`, and `artifact-name`.
 - This repo calls `zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.3` from [.github/workflows/build.yml](../../../.github/workflows/build.yml). One `build.yaml` lists the targets for both keyboards.
+- The archive is named `firmware-<branch>-<commit>` for branch pushes and `firmware-<tag>` for `v*` tags. A tag also publishes a GitHub release with the `.uf2` files attached.
 - Pin the reusable workflow to a tag or commit. Pins are a decision (see the `zmk-sofle` skill).
 
 ## Split keyboards

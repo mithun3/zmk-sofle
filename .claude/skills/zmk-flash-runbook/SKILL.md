@@ -18,7 +18,7 @@ The agent prints these steps. The owner runs them. Never run flash commands from
    - Keymap or Kconfig change only: the left (central) half is usually enough. The split docs say so for keymap changes.
    - Board, shield, or Studio change: flash both halves.
    - Pairing trouble: flash the `settings_reset` build on the affected half, then the normal builds on both halves.
-2. Confirm the artifact. CI artifacts come from `build.yaml`. Each keyboard has three: `<keyboard>_left` (with Studio), `<keyboard>_right`, and `<keyboard>_settings_reset`, where `<keyboard>` is `eyelash_sofle` or `corne`. Local builds go in `build/left` and `build/right`.
+2. Confirm the artifact. CI artifacts come from `build.yaml`, in an archive named `firmware-<branch>-<commit>` on the Actions run, or attached to the GitHub release for a `v*` tag. Each keyboard has three: `<keyboard>_left` (with Studio), `<keyboard>_right`, and `<keyboard>_settings_reset`, where `<keyboard>` is `eyelash_sofle` or `corne`. Local builds go in `build/left` and `build/right`.
 3. Keep both halves charged or on USB while you flash.
 
 ## UF2 path

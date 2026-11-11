@@ -12,6 +12,7 @@ ZMK firmware config for two split keyboards. Both build from this repo on ZMK `v
 | Keymap | `config/eyelash_sofle.keymap` | `config/corne.keymap` |
 | Settings | `config/eyelash_sofle.conf` | `config/corne.conf` |
 | Layers | BASE, LOWER, RAISE, ADJUST (LOWER + RAISE) | BASE, LOWER, RAISE |
+| Display | nice-view-gem | nice!view |
 | Extras | Encoder, mouse keys, RGB underglow, backlight | none |
 
 ZMK picks each keyboard's `.keymap` and `.conf` by name, so the two never mix.
@@ -36,7 +37,7 @@ keymap_drawer.config.yaml  drawing style
 
 1. Edit `config/<keyboard>.keymap`. Keep 64 bindings per Sofle layer and 42 per Corne layer.
 2. Push. GitHub Actions builds the firmware and redraws `keymap-drawer/<keyboard>.svg`.
-3. Download the `firmware` artifact from the Actions run and flash it.
+3. Download the firmware archive from the Actions run (see Builds and releases) and flash it.
 
 ## Firmware files
 
@@ -44,6 +45,26 @@ keymap_drawer.config.yaml  drawing style
 | :- | :- | :- | :- |
 | Sofle | `eyelash_sofle_left.uf2` | `eyelash_sofle_right.uf2` | `eyelash_sofle_settings_reset.uf2` |
 | Corne | `corne_left.uf2` | `corne_right.uf2` | `corne_settings_reset.uf2` |
+
+## Builds and releases
+
+Every push builds all six files. Where to find them:
+
+| Event | Archive name | Where | Kept for |
+| :- | :- | :- | :- |
+| Push to a branch | `firmware-<branch>-<commit>` | Actions run, under Artifacts | 90 days |
+| Merge to `main` | `firmware-main-<commit>` | Actions run, under Artifacts | 90 days |
+| Tag `v*` | `firmware-<tag>` | Releases page, files attached | Permanently |
+
+To cut a release, tag a commit on `main` that you have tested on hardware:
+
+```
+git switch main && git pull
+git tag -a v1.0.0 -m "v1.0.0"
+git push origin v1.0.0
+```
+
+Use `vMAJOR.MINOR.PATCH`: patch for config tweaks, minor for keymap changes, major for a ZMK version change that needs a settings reset.
 
 ## Flashing
 
@@ -59,12 +80,15 @@ The left half of each keyboard is built with [ZMK Studio](https://zmk.studio) su
 
 ## Display screens
 
-All four halves use the [nice-view-gem](https://github.com/M165437/nice-view-gem) screen with its animation turned off.
+The screen design is chosen per half by one word on the `shield:` line in `build.yaml`. It is fixed when the firmware is built and cannot be changed from the keyboard.
 
-- Left half: layer, Bluetooth profile, USB or BLE output, battery, typing speed.
-- Right half: battery, link to the left half, and a still image that changes on each restart.
+| Shield word | Screen | Source |
+| :- | :- | :- |
+| `nice_view` | Stock ZMK nice!view screen | ZMK |
+| `nice_view_gem` | Gem status screen, crystal animation on the right half | nice-view-gem module |
+| `nice_view_custom` | Mario animation, meant for the right half | mario-peripheral-animation module |
 
-The screen is chosen by the last word on each `shield:` line in `build.yaml` and is fixed when the firmware is built. `nice_view` gives the stock ZMK screen instead.
+On the Corne, keep `nice_view_adapter` in front of the word. Both modules are listed in `config/west.yml` and downloaded by the build.
 
 ## Local builds
 
