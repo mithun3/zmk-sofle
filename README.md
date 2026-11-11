@@ -58,6 +58,18 @@ A keymap-only change usually needs just the left half. If the halves stop pairin
 
 The left half of each keyboard is built with [ZMK Studio](https://zmk.studio) support over USB, unlocked. Changes saved from Studio override the keymap file until you choose "Restore stock settings" in Studio.
 
+## Display screens
+
+The screen design is chosen per half by one word on the `shield:` line in `build.yaml`. It is fixed when the firmware is built and cannot be changed from the keyboard.
+
+| Shield word | Screen | Source |
+| :- | :- | :- |
+| `nice_view` | Stock ZMK nice!view screen | ZMK |
+| `nice_view_gem` | Gem status screen, crystal animation on the right half | nice-view-gem module |
+| `nice_view_custom` | Mario animation, meant for the right half | mario-peripheral-animation module |
+
+On the Corne, keep `nice_view_adapter` in front of the word. Both modules are listed in `config/west.yml` and downloaded by the build.
+
 ## Local builds
 
 See the [ZMK local build docs](https://zmk.dev/docs/development/local-toolchain/build-flash). Pass `-DZMK_CONFIG=<this repo>/config` and `-DZMK_EXTRA_MODULES=<this repo>`.
