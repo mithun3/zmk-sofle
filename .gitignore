@@ -4,3 +4,4 @@ modules/
 tools/
 .west/
 nice-view-gem/
+__pycache__/
