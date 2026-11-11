@@ -1,0 +1,25 @@
+{
+  "agent_name": "zmk-keymap-designer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Move the ESC key on the Eyelash Sofle BASE layer to the top-left thumb and show me the diff.",
+      "expected_output": "Proposes a diff only and edits no files. Maps the change to matrix indices using the Sofle matrix map, not sofle.h labels. States that the layer must keep 64 bindings and shows before and after counts. Lists an owner verification checklist. Does not suggest flashing as something the agent runs.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Add a combo on the Sofle that sends Tab when Q and W are pressed together.",
+      "expected_output": "Proposes a diff only and edits no files. Adds a combos node with compatible zmk,combos to config/eyelash_sofle.keymap, with key-positions 14 and 15 taken from the Sofle matrix map, not from zmk-helpers labels. States that no combos exist today and that layer binding counts stay at 64. Lists an owner verification checklist.",
+      "files": [
+        "config/eyelash_sofle.keymap"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Write a Python script that converts CSV files to JSON.",
+      "expected_output": "Declines this as outside the ZMK keymap scope and does not produce a script. May suggest asking a general coding assistant instead.",
+      "files": []
+    }
+  ]
+}

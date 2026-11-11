@@ -1,0 +1,47 @@
+{
+  "permissions": {
+    "deny": [
+      "Bash(west flash *)",
+      "Bash(west flash)",
+      "Bash(nrfjprog *)",
+      "Bash(nrfutil *)",
+      "Bash(dfu-util *)",
+      "Bash(picotool *)",
+      "Bash(openocd *)",
+      "Bash(pyocd *)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/id_rsa*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3",
+            "args": ["${CLAUDE_PROJECT_DIR}/.claude/hooks/block-flash.py"],
+            "onFailure": "block",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Read|Edit|Write|Grep|Glob|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3",
+            "args": ["${CLAUDE_PROJECT_DIR}/.claude/hooks/block-secret-access.py"],
+            "onFailure": "block",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

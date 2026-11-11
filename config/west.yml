@@ -1,37 +1,17 @@
-# This file specifies the build dependencies for Github Action workflows and
-# for local build environments. The workspace has four toplevel directories
-# containing the user config, modules, zephy and ZMK.
-#
-# ZMK-Workspace
-# ├── config
-# ├── modules
-# ├── zephyr
-# └── zmk
-#
-# To create a local build environment, clone this repository and then run the
-# following commands from its toplevel directory:
-#
-# $ west init -l config
-# $ west update
-# $ west zephyr-export
-#
 manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-      # Additional modules containing boards/shields/custom code can be listed here as well.
-      # See:
-      # - https://zmk.dev/docs/features/modules
-      # - https://docs.zephyrproject.org/3.5.0/develop/west/manifest.html#projects
     - name: m165437
       url-base: https://github.com/M165437
   projects:
-    - name: nice-view-gem
-      remote: m165437
-      revision: main
     - name: zmk
       remote: zmkfirmware
       revision: v0.3
       import: app/west.yml
+    # Display screen for both keyboards. Its main branch targets ZMK main, so pin the v0.3 tag.
+    - name: nice-view-gem
+      remote: m165437
+      revision: v0.3.0
   self:
-    path: boards
+    path: config
